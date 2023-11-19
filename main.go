@@ -2,15 +2,13 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+
+	"github.com/amra.satara/learning-go/aoc2016"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		_, err := fmt.Fprintf(w, "Hello world")
-		if err != nil {
-			fmt.Println("Error", err)
-		}
-	})
-	http.ListenAndServe(":8080", nil)
+
+	fmt.Println("Day 1 part 1: ", aoc2016.Day01Part1())
+	fmt.Println("Day 1 part 2: ", aoc2016.Day01Part2())
+
 }
