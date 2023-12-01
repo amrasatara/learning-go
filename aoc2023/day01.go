@@ -6,11 +6,11 @@ import (
 	"strings"
 
 	"github.com/amra.satara/learning-go/fileparsers"
+	"github.com/amra.satara/learning-go/helpers"
 )
 
 func Day01Part1() int {
 	input := fileparsers.ReadLines("inputs2023\\day1.txt")
-
 	sum := 0
 	for _, v := range input {
 		x := parseNumber(v)
@@ -30,12 +30,7 @@ func Day01Part2() int {
 		}(v)
 	}
 
-	sum := 0
-	for i := 0; i < len(input); i++ {
-		sum += <-ch
-	}
-
-	return sum
+	return helpers.SumChanelValues(ch, len(input))
 }
 
 func parseNumber(input string) int {
