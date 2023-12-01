@@ -22,11 +22,19 @@ func Day01Part1() int {
 func Day01Part2() int {
 	input := fileparsers.ReadLines("inputs2023\\day1.txt")
 
-	sum := 0
+	ch := make(chan int)
 	for _, v := range input {
-		x := parseNumberAndLetters(v)
-		sum += x
+		go func(line string) {
+			x := parseNumberAndLetters(line)
+			ch <- x
+		}(v)
 	}
+
+	sum := 0
+	for i := 0; i < len(input); i++ {
+		sum += <-ch
+	}
+
 	return sum
 }
 
@@ -49,7 +57,6 @@ func parseNumber(input string) int {
 	}
 
 	n := first*10 + last
-	fmt.Println(input, n)
 	return n
 }
 func parseNumberAndLetters(input string) int {
