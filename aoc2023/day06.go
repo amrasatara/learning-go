@@ -1,7 +1,6 @@
 package aoc2023
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -36,7 +35,6 @@ func Day06Part1() int {
 	sum := 1
 	for _, rd := range races {
 		distances := FindHoldTimes(rd.Time)
-		fmt.Println(distances)
 		count := CountBigger(distances, rd.Distance)
 		sum *= count
 	}
