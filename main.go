@@ -23,7 +23,9 @@ func main() {
 	// fmt.Println("Day 7 part 1: ", aoc2023.Day07Part1()) //248836197
 	// fmt.Println("Day 7 part 2: ", aoc2023.Day07Part2()) //251195607
 
-	fmt.Println("Day 8 part 1: ", aoc2023.Day08Part1()) //
-	fmt.Println("Day 8 part 2: ", aoc2023.Day08Part2()) //
+	// fmt.Println("Day 8 part 1: ", aoc2023.Day08Part1()) //
+	// fmt.Println("Day 8 part 2: ", aoc2023.Day08Part2()) //
+	// fmt.Println("Day 10 part 1: ", aoc2023.Day10Part1()) // 6968
+	fmt.Println("Day 10 part 2: ", aoc2023.Day10Part2()) //
 
 }

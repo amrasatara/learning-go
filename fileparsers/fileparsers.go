@@ -28,6 +28,13 @@ func ReadLines(path string) []string {
 	return lines
 }
 
+func Write(sb strings.Builder, filename string) {
+	file, _ := os.Create(filename)
+	defer file.Close()
+
+	file.WriteString(sb.String())
+}
+
 func ParseToStringObj(input string, separator string) []string {
 	return strings.Split(input, separator)
 }
