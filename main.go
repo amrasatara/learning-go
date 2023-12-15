@@ -34,6 +34,6 @@ func main() {
 	//fmt.Println("Day 12 part 1: ", aoc2023.Day12Part1()) //
 	//fmt.Println("Day 112 part 2: ", aoc2023.Day12Part2()) //
 
-	fmt.Println("Day 15 part 1: ", aoc2023.Day15Part2()) //
+	fmt.Println("Day 14 part 1: ", aoc2023.Day14Part2()) //
 
 }
