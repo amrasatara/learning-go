@@ -5,12 +5,12 @@ import (
 	"strings"
 
 	"github.com/amra.satara/learning-go/fileparsers"
-	"github.com/amra.satara/learning-go/helpers"
 )
 
 func Day12Part1() int {
 	input := fileparsers.ReadLines("inputs2023\\day12.txt")
 
+	pathsday12 = make(map[string]int)
 	sum := 0
 	data := make([]SpringsDay12, len(input))
 	for i, v := range input {
@@ -48,17 +48,19 @@ func parseToSpring(v string) SpringsDay12 {
 func Day12Part2() int {
 	input := fileparsers.ReadLines("inputs2023\\day12.txt")
 
-	ch := make(chan int)
-	for _, v := range input {
-		go func(line string) {
-			d := parseToSpring2(line)
-			findOptions(&d)
-			ch <- d.Options
-		}(v)
-
+	pathsday12 = make(map[string]int)
+	sum := 0
+	data := make([]SpringsDay12, len(input))
+	for i, v := range input {
+		data[i] = parseToSpring2(v)
+		findOptions(&data[i])
+		sum += data[i].Options
+		//fmt.Println(data[i].Options, v)
 	}
 
-	return helpers.SumChanelValues(ch, len(input))
+	//fmt.Println(data)
+
+	return sum
 }
 
 func parseToSpring2(v string) SpringsDay12 {
@@ -145,14 +147,38 @@ func findNext(spring *SpringsDay12, input string, numbers []int) bool {
 		if len(after) > 0 {
 			rest = input[i+number+1:]
 		}
-		_ = findNext(spring, rest, numbers[1:])
+		key := makeKey(rest, numbers[1:])
 
+		numb, ok := pathsday12[key]
+		if ok {
+			spring.Options += numb
+		} else {
+			beforeOptions := spring.Options
+			_ = findNext(spring, rest, numbers[1:])
+			pathsday12[key] = spring.Options - beforeOptions
+		}
 		if v == '#' {
 			break
 		}
 	}
 	return false
 }
+
+func makeKey(rest string, list []int) string {
+	sb := strings.Builder{}
+
+	sb.WriteString(rest)
+	sb.WriteString("-")
+
+	for _, v := range list {
+		sb.WriteString(strconv.Itoa(v))
+		sb.WriteString("-")
+	}
+
+	return sb.String()
+}
+
+var pathsday12 map[string]int
 
 type SpringsDay12 struct {
 	Raw     string

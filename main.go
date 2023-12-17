@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	fmt.Println("Day 16 part 1: ", aoc2023.Day16Part2()) //
+	fmt.Println("Day 12 part 2: ", aoc2023.Day12Part2()) //
 
 }
